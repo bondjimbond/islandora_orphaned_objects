@@ -1,0 +1,6 @@
+name = Islandora Orphaned Objects
+description = Generates a list of objects with no parent, or objects whose parent no longer exists.
+dependencies[] = islandora
+package = Islandora Tools
+version = 7.x-dev
+core = 7.x
