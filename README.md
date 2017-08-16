@@ -2,7 +2,9 @@
 
 ## Introduction
 
-Lists all orphaned objects, providing links and a delete option. Orphaned objects are created when a collection is created, but the child objects remain. These child objects will list the extinct parent in RELS-EXT and are not findable through conventional means.
+When a parent collection is deleted, in some cases its child objects are not. These objects become orphaned, their RELS-EXT proclaiming a relationship with a parent that no longer exists. These objects become lost in the repository, taking up space and occasionally turning up unexpectedly in search results.
+
+Islandora Orphaned Objects finds these orphans, creates a list, and provides the option to purge them. Currently restricted to standard objects with an "isMemberOfCollection" relationship. Page objects and other features to be added soon.
 
 ## Requirements
 
