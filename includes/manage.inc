@@ -43,9 +43,13 @@ function islandora_orphaned_objects_manage_form($form, $form_state) {
     foreach ($orphaned_objects as $orphaned_object) {
       $pid = $orphaned_object['object']['value'];
       if (islandora_namespace_accessible($pid)) {
-        $rows[$pid] = array(l($orphaned_object['title']['value'], "islandora/object/$pid"));
+        $rows[$pid] = array(l($orphaned_object['title']['value'] . " (" . $pid . ")", "islandora/object/$pid"));
       }
     }
+// print_r($rows);
+// print_r("<br><br>");
+    ksort($rows);
+// print_r($rows);
     $form['management_table'] = array(
       '#type' => 'tableselect',
       '#header' => array(t('Object')),
