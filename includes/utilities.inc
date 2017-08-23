@@ -24,6 +24,19 @@ WHERE {
   FILTER(!bound(?model))
 }
 EOQ;
+
+  $query2 = <<<EOQ
+SELECT ?object ?book
+WHERE {
+  ?object <fedora-model:hasModel> <info:fedora/fedora-system:FedoraObject-3.0> ;
+               <fedora-rels-ext:isMemberOf> ?book .
+  OPTIONAL {
+    ?book <fedora-model:hasModel> ?model .
+  }
+  FILTER(!bound(?model))
+}
+EOQ;
+
   $optionals = (array) module_invoke('islandora_xacml_api', 'islandora_basic_collection_get_query_optionals', 'view');
   $filter_modules = array(
     'islandora_xacml_api',
@@ -40,6 +53,12 @@ EOQ;
     '!optionals' => !empty($optionals) ? ('OPTIONAL {{' . implode('} UNION {', $optionals) . '}}') : '',
     '!filters' => !empty($filters) ? implode(' ', array_map($filter_map, $filters)) : '',
   ));
-  $results = $connection->repository->ri->sparqlQuery($sparql_query);
+  $sparql_query2 = format_string($query2, array(
+    '!optionals' => !empty($optionals) ? ('OPTIONAL {{' . implode('} UNION {', $optionals) . '}}') : '',
+    '!filters' => !empty($filters) ? implode(' ', array_map($filter_map, $filters)) : '',
+  ));
+//  $results = $connection->repository->ri->sparqlQuery($sparql_query);
+  $results = $connection->repository->ri->sparqlQuery($sparql_query2);
   return $results;
+print_r($results);
 }
