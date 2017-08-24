@@ -8,11 +8,13 @@
  * Query for orphaned objects.
  *
  * @return array
- *   An array containing the results of the orphaned objects query.
+ *   An array containing the results of the orphaned objects queries.
  */
 function islandora_orphaned_objects_get_orphaned_objects() {
   $connection = islandora_get_tuque_connection();
-  $query = <<<EOQ
+
+// First query: get standard objects.
+  $object_query = <<<EOQ
 SELECT ?object ?collection ?title
 WHERE {
   ?object <fedora-model:hasModel> <info:fedora/fedora-system:FedoraObject-3.0> ;
@@ -25,16 +27,18 @@ WHERE {
 }
 EOQ;
 
-  $query2 = <<<EOQ
-SELECT ?object ?book
+// Second query: get paged objects. Includes newspaper issues, book pages, newspaper pages.
+  $paged_query = <<<EOQ
+SELECT ?object ?book ?title
 WHERE {
   ?object <fedora-model:hasModel> <info:fedora/fedora-system:FedoraObject-3.0> ;
-               <fedora-rels-ext:isMemberOf> ?book .
+             <fedora-rels-ext:isMemberOf> ?book .
+  ?object <fedora-model:label> ?title;
   OPTIONAL {
     ?book <fedora-model:hasModel> ?model .
   }
-  FILTER(!bound(?model))
-}
+   FILTER(!bound(?model))
+  }
 EOQ;
 
   $optionals = (array) module_invoke('islandora_xacml_api', 'islandora_basic_collection_get_query_optionals', 'view');
@@ -49,16 +53,20 @@ EOQ;
   $filter_map = function ($filter) {
     return "FILTER($filter)";
   };
-  $sparql_query = format_string($query, array(
+
+// Separate queries for different object types, due to different relationship types.
+  $sparql_query_objects = format_string($object_query, array(
     '!optionals' => !empty($optionals) ? ('OPTIONAL {{' . implode('} UNION {', $optionals) . '}}') : '',
     '!filters' => !empty($filters) ? implode(' ', array_map($filter_map, $filters)) : '',
   ));
-  $sparql_query2 = format_string($query2, array(
+  $sparql_query_paged = format_string($paged_query, array(
     '!optionals' => !empty($optionals) ? ('OPTIONAL {{' . implode('} UNION {', $optionals) . '}}') : '',
     '!filters' => !empty($filters) ? implode(' ', array_map($filter_map, $filters)) : '',
   ));
-//  $results = $connection->repository->ri->sparqlQuery($sparql_query);
-  $results = $connection->repository->ri->sparqlQuery($sparql_query2);
+  $object_results = $connection->repository->ri->sparqlQuery($sparql_query_objects);
+  $paged_results = $connection->repository->ri->sparqlQuery($sparql_query_paged);
+
+// Merge results of both queries into a single variable and return.
+  $results = array_merge($object_results, $paged_results);
   return $results;
-print_r($results);
 }

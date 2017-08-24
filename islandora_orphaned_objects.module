@@ -11,7 +11,7 @@
 function islandora_orphaned_objects_menu() {
   $items = array();
   $items['admin/islandora/tools/orphaned_objects/list'] = array(
-    'title' => 'Islandora Orphaned Objects',
+    'title' => 'Orphaned objects',
     'description' => 'List of orphaned objects.',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('islandora_orphaned_objects_manage_form'),
