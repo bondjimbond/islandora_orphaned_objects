@@ -18,7 +18,7 @@ before_install:
   - $HOME/islandora/tests/scripts/travis_setup.sh
   - cd $HOME/drupal-*
   - ln -s $TRAVIS_BUILD_DIR sites/all/modules/islandora_orphaned_objects
-  - drush en --yes islandora_simple_workflow
+  - drush en --yes islandora_orphaned_objects
 script:
   - $ISLANDORA_DIR/tests/scripts/line_endings.sh sites/all/modules/islandora_orphaned_objects
   - drush coder-review --reviews=production,security,style,i18n,potx,sniffer islandora_orphaned_objects
