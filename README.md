@@ -2,9 +2,12 @@
 
 ## Introduction
 
-When a parent collection is deleted, in some cases its child objects are not. These objects become orphaned, their RELS-EXT proclaiming a relationship with a parent that no longer exists. These objects become lost in the repository, taking up space and occasionally turning up unexpectedly in search results.
+When a parent object is deleted via its parent's context, its child objects are not removed. These objects become orphaned, their RELS-EXT proclaiming a relationship with a parent that no longer exists. These objects become lost in the repository, taking up space and occasionally turning up unexpectedly in search results.
 
-Islandora Orphaned Objects finds these orphans, creates a list, and provides the option to purge them. Currently restricted to standard objects with an "isMemberOfCollection" relationship. Page objects and other features to be added soon.
+Islandora Orphaned Objects finds these orphans, creates a list, and provides the option to purge them. Works with the following types of orphaned object:
+
+* Standard objects with the isMemberOfCollection relationship
+* Paged content objects with the isMemberOf relationship (including Newspaper Issues, Newspaper Pages, and Book Pages)
 
 ## Requirements
 
