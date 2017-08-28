@@ -51,7 +51,7 @@ function islandora_orphaned_objects_delete_batch_operation($pids, &$context) {
     $target_object = islandora_object_load($target_pid);
     $context['message'] = t('Deleting @label (@pid) (@current of @total)...', array(
         '@label' => $target_object->label,
-	'@pid' => $target_object->pid,
+        '@pid' => $target_object->pid,
         '@current' => $context['sandbox']['progress'],
         '@total' => $context['sandbox']['total'],
     ));
