@@ -1,4 +1,4 @@
-# Islandora Orphaned Objects [![Build Status](https://travis-ci.org/Islandora/islandora_orphaned_objects.png?branch=7.x)](https://travis-ci.org/bondjimbond/islandora_orphaned_objects)
+# Islandora Orphaned Objects [![Build Status](https://travis-ci.org/bondjimbond/islandora_orphaned_objects.png?branch=7.x)](https://travis-ci.org/bondjimbond/islandora_orphaned_objects)
 
 ## Introduction
 
