@@ -24,7 +24,6 @@ function islandora_orphaned_objects_menu() {
 /**
  * Implements hook_permission().
  */
-
 function islandora_orphaned_objects_permission() {
   return array(
     'manage orphaned objects' => array(

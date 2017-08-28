@@ -27,7 +27,7 @@ WHERE {
 }
 EOQ;
 
-  // Second query: get paged objects. Includes newspaper issues, book pages, newspaper pages.
+  // Second query: get paged objects.
   $paged_query = <<<EOQ
 SELECT ?object ?book ?title
 WHERE {
