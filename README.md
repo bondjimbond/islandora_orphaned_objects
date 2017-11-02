@@ -21,7 +21,7 @@ Install as usual, see [this](https://drupal.org/documentation/install/modules-th
 
 ## Configuration
 
-Orphaned Objects can be viewed at Administration » Islandora » Simple Workflow objects (admin/islandora/tools/orphaned_objects/list).
+Orphaned Objects can be viewed at Administration » Islandora » Orphaned objects (admin/islandora/tools/orphaned_objects/list).
 
 ## Documentation
 
