@@ -21,11 +21,7 @@ Install as usual, see [this](https://drupal.org/documentation/install/modules-th
 
 ## Configuration
 
-Orphaned Objects can be viewed at Administration » Islandora » Orphaned objects (admin/islandora/tools/orphaned_objects/list).
-
-## Documentation
-
-Further documentation for this module is available at [our wiki](https://wiki.duraspace.org/display/ISLANDORA/Simple+Workflow).
+Orphaned Objects can be viewed at Administration » Islandora » Islandora utility modules » Orphaned objects (admin/islandora/tools/orphaned_objects/list).
 
 ## Troubleshooting/Issues
 
