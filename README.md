@@ -1,5 +1,13 @@
 # Islandora Orphaned Objects [![Build Status](https://travis-ci.org/bondjimbond/islandora_orphaned_objects.png?branch=7.x)](https://travis-ci.org/bondjimbond/islandora_orphaned_objects)
 
+## Deprecation notice
+
+As of March 22, 2018 (if running on HEAD) or the Islandora 7.x-1.11 release, the Orphaned Objects functionality has been merged into the core Islandora module. In these versions of Islandora, the Orphaned Objects list will be available via the admin menu under Reports -> Orphaned Islandora Objects.
+
+If you have been using Islandora Orphaned Objects and are using or preparing to use the latest Islandora code, please uninstall Islandora Orphaned Objects to avoid conflicts.
+
+If you are not upgrading to the latest Islandora version, this module will remain available. I will be maintaining the module and responding to issues for the foreseeable future.
+
 ## Introduction
 
 When a parent object is deleted via its parent's context, its child objects are not removed. These objects become orphaned, their RELS-EXT proclaiming a relationship with a parent that no longer exists. These objects become lost in the repository, taking up space and occasionally turning up unexpectedly in search results.
